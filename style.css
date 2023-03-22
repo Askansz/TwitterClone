@@ -1,73 +1,66 @@
-/* Reset default browser styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* Apply a modern sans-serif font to the entire page */
-body {
-  font-family: 'Open Sans', sans-serif;
-}
-
-/* Apply a background color to the page */
-body {
-  background-color: #f2f2f2;
-}
-
-/* Center the content on the page */
+/* Main container */
 .container {
-  max-width: 600px;
+  width: 600px;
   margin: 0 auto;
-  padding: 20px;
 }
 
-/* Style the tweet form */
-#tweet-form {
+/* Header */
+.header {
+  background-color: #1DA1F2;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 24px;
+}
+
+/* Form */
+.form-container {
   display: flex;
   flex-direction: column;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  margin-top: 20px;
+}
+
+.form-container label {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.form-container input[type=text],
+.form-container textarea {
+  padding: 10px;
   margin-bottom: 20px;
-}
-
-#tweet-form textarea {
-  border: none;
-  resize: none;
-  font-size: 16px;
-  font-weight: 400;
-  padding: 10px;
-  margin-bottom: 10px;
-  height: 100px;
   border-radius: 5px;
-  background-color: #f2f2f2;
+  border: none;
 }
 
-#tweet-form button {
-  background-color: #00acee;
+.form-container button {
+  background-color: #1DA1F2;
   color: white;
-  font-size: 16px;
-  font-weight: 600;
   border: none;
+  padding: 10px;
   border-radius: 5px;
-  padding: 10px;
   cursor: pointer;
+  margin-top: 10px;
+  font-size: 18px;
 }
 
-/* Style the list of tweets */
-#tweets-list {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+/* List of messages */
+.message-list {
+  margin-top: 20px;
 }
 
-#tweets-list li {
-  border-bottom: 1px solid #f2f2f2;
+.message {
+  background-color: #E6ECF0;
   padding: 10px;
-  font-size: 16px;
-  font-weight: 400;
+  border-radius: 5px;
   margin-bottom: 10px;
+}
+
+.message p {
+  margin-bottom: 5px;
+}
+
+.message span {
+  color: #8899A6;
+  font-size: 14px;
 }
