@@ -1,39 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Twitter Clone</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+	<title>Twitter Clone</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div id="header">
-        <h1>Twitter Clone</h1>
-    </div>
-    <div id="content">
-        <div id="tweet-box">
-            <form>
-                <textarea placeholder="What's happening?" id="tweet"></textarea>
-                <button type="submit" id="submit-tweet">Tweet</button>
-            </form>
-        </div>
-        <div id="tweets">
-            <div class="tweet">
-                <div class="tweet-author">
-                    <img src="https://via.placeholder.com/50x50.png" alt="Profile Picture">
-                    <span>John Doe</span>
-                </div>
-                <div class="tweet-content">
-                    <p>This is my first tweet!</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="app.js"></script>
+	<div class="container">
+		<h1>Twitter Clone</h1>
+		<form>
+			<textarea id="message" placeholder="Write your message"></textarea>
+			<button type="submit" id="send-btn">Send</button>
+		</form>
+		<ul id="messages">
+			<!-- messages will be added here dynamically -->
+		</ul>
+	</div>
+	<script src="app.js"></script>
 </body>
 </html>
-<div id="tweet-list">
-    <h2>Tweets</h2>
-    <ul>
-        <!-- List of tweets will be added here dynamically using JavaScript -->
-    </ul>
-</div>
