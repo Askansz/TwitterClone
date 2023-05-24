@@ -13,9 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let ballSpeedY = 2;
   
   function movePaddle(event) {
+    const touch = event.touches[0]; // Get the first touch point
     const gameAreaLeft = gameArea.getBoundingClientRect().left;
-    const mousePositionX = event.clientX - gameAreaLeft;
-    const paddleLeft = mousePositionX - paddleWidth / 2;
+    const touchPositionX = touch.clientX - gameAreaLeft;
+    const paddleLeft = touchPositionX - paddleWidth / 2;
     
     if (paddleLeft >= 0 && paddleLeft <= gameAreaWidth - paddleWidth) {
       paddle.style.left = paddleLeft + "px";
@@ -50,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ball.style.top = ballTop + "px";
   }
   
-  gameArea.addEventListener("mousemove", movePaddle);
+  gameArea.addEventListener("touchmove", movePaddle);
   
   const gameInterval = setInterval(moveBall, 10);
 });
