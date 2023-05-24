@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ball.style.top = ballTop + "px";
   }
   
-  document.addEventListener("mousemove", movePaddle);
+  gameArea.addEventListener("mousemove", movePaddle);
   
   const gameInterval = setInterval(moveBall, 10);
 });
