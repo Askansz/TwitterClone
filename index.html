@@ -1,42 +1,101 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Paddle Game</title>
-  <style>
-    #gameArea {
-      width: 400px;
-      height: 400px;
-      border: 1px solid black;
-      position: relative;
-      touch-action: none; /* Disable default touch interactions on game area */
-    }
-    
-    #paddle {
-      width: 80px;
-      height: 10px;
-      background-color: blue;
-      position: absolute;
-      bottom: 10px;
-      left: 160px;
-    }
-    
-    #ball {
-      width: 20px;
-      height: 20px;
-      background-color: red;
-      position: absolute;
-      top: 100px;
-      left: 190px;
-      border-radius: 50%;
-    }
-  </style>
-</head>
-<body>
-  <div id="gameArea">
-    <div id="paddle"></div>
-    <div id="ball"></div>
-  </div>
+  <head>
+    <style>
+      #gameArea {
+        width: 400px;
+        height: 300px;
+        border: 1px solid black;
+        position: relative;
+      }
 
-  <script src="game.js"></script>
-</body>
+      #paddle {
+        width: 80px;
+        height: 10px;
+        background-color: black;
+        position: absolute;
+        bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="gameArea">
+      <img id="ball" src="ball.PNG" alt="Ball" width="40" height="40">
+      <div id="paddle"></div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const paddle = document.getElementById("paddle");
+        const ball = document.getElementById("ball");
+        const gameArea = document.getElementById("gameArea");
+
+        let gameAreaWidth = gameArea.offsetWidth;
+        let paddleWidth = paddle.offsetWidth;
+        let ballWidth = ball.offsetWidth;
+
+        let ballLeft = 190;
+        let ballTop = 100;
+        let ballSpeedX = 2;
+        let ballSpeedY = 2;
+
+        function movePaddle(event) {
+          const touch = event.touches[0]; // Get the first touch point
+          const gameAreaLeft = gameArea.getBoundingClientRect().left;
+          const touchPositionX = touch.clientX - gameAreaLeft;
+          const paddleLeft = touchPositionX - paddleWidth / 2;
+
+          if (paddleLeft >= 0 && paddleLeft <= gameAreaWidth - paddleWidth) {
+            paddle.style.left = paddleLeft + "px";
+          }
+        }
+
+        function moveBall() {
+          ballLeft += ballSpeedX;
+          ballTop += ballSpeedY;
+
+          if (ballLeft <= 0 || ballLeft >= gameAreaWidth - ballWidth) {
+            ballSpeedX = -ballSpeedX;
+          }
+
+          if (ballTop <= 0 || ballTop >= gameArea.offsetHeight - ballWidth) {
+            ballSpeedY = -ballSpeedY;
+          }
+
+          // Check collision with paddle
+          const paddleTop = gameArea.offsetHeight - paddle.offsetHeight;
+          const paddleBottom = gameArea.offsetHeight;
+          const paddleLeft = paddle.offsetLeft;
+          const paddleRight = paddle.offsetLeft + paddleWidth;
+
+          if (
+            ballTop + ballWidth >= paddleTop &&
+            ballTop <= paddleBottom &&
+            ballLeft + ballWidth >= paddleLeft &&
+            ballLeft <= paddleRight
+          ) {
+            // Randomize bounce angle
+            ballSpeedX = Math.random() * 2 - 1; // Random number between -1 and 1
+            ballSpeedY = -ballSpeedY; // Reverse the vertical direction
+
+            // Adjust the ball's position to prevent it from going through the paddle
+            ballTop = paddleTop - ballWidth;
+          }
+
+          // Check if ball hits the bottom wall
+          if (ballTop >= gameArea.offsetHeight - ballWidth) {
+            alert("Game Over!");
+            clearInterval(gameInterval);
+          }
+
+          ball.style.left = ballLeft + "px";
+          ball.style.top = ballTop + "px";
+        }
+
+        gameArea.addEventListener("touchmove", movePaddle);
+
+        const gameInterval = setInterval(moveBall, 10);
+      });
+    </script>
+  </body>
 </html>
