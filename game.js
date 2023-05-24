@@ -41,11 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
       ballLeft + ballWidth >= paddle.offsetLeft &&
       ballLeft <= paddle.offsetLeft + paddleWidth
     ) {
-      ballSpeedY = -ballSpeedY;
-      
       // Randomize bounce angle
       ballSpeedX = Math.random() * 2 - 1; // Random number between -1 and 1
       ballSpeedY = -ballSpeedY; // Reverse the vertical direction
+      
+      // Adjust the ball's position to prevent it from going through the paddle
+      ballTop = gameArea.offsetHeight - paddle.offsetHeight - ballWidth;
     }
     
     // Check if ball hits the bottom wall
