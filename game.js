@@ -42,6 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
       ballLeft <= paddle.offsetLeft + paddleWidth
     ) {
       ballSpeedY = -ballSpeedY;
+      
+      // Add a random factor to ballSpeedX
+      ballSpeedX = ballSpeedX > 0 ? Math.random() * 2 + 1 : -(Math.random() * 2 + 1);
     }
     
     // Check if ball hits the bottom wall
