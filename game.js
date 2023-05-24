@@ -43,8 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       ballSpeedY = -ballSpeedY;
       
-      // Randomize ballSpeedX direction
-      ballSpeedX = Math.random() < 0.5 ? -1 : 1;
+      // Randomize bounce angle
+      ballSpeedX = Math.random() * 2 - 1; // Random number between -1 and 1
+      ballSpeedY = -ballSpeedY; // Reverse the vertical direction
     }
     
     // Check if ball hits the bottom wall
