@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Check collision with paddle
     if (
       ballTop + ballWidth >= gameArea.offsetHeight - paddle.offsetHeight &&
-      ballTop <= gameArea.offsetHeight - paddle.offsetHeight &&
+      ballTop <= gameArea.offsetHeight - paddle.offsetHeight + ballSpeedY &&
       ballLeft + ballWidth >= paddle.offsetLeft &&
       ballLeft <= paddle.offsetLeft + paddleWidth
     ) {
