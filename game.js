@@ -35,16 +35,19 @@ document.addEventListener("DOMContentLoaded", () => {
       ballSpeedY = -ballSpeedY;
     }
     
+    // Check collision with paddle
+    if (
+      ballTop + ballWidth >= gameArea.offsetHeight - paddle.offsetHeight &&
+      ballLeft + ballWidth >= paddle.offsetLeft &&
+      ballLeft <= paddle.offsetLeft + paddleWidth
+    ) {
+      ballSpeedY = -ballSpeedY;
+    }
+    
+    // Check if ball hits the bottom wall
     if (ballTop >= gameArea.offsetHeight - ballWidth) {
-      if (
-        ballLeft >= paddle.offsetLeft &&
-        ballLeft <= paddle.offsetLeft + paddleWidth
-      ) {
-        ballSpeedY = -ballSpeedY;
-      } else {
-        alert("Game Over!");
-        clearInterval(gameInterval);
-      }
+      alert("Game Over!");
+      clearInterval(gameInterval);
     }
     
     ball.style.left = ballLeft + "px";
