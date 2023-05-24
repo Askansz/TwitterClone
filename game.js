@@ -36,18 +36,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Check collision with paddle
+    const paddleTop = gameArea.offsetHeight - paddle.offsetHeight;
+    const paddleBottom = gameArea.offsetHeight;
+    const paddleLeft = paddle.offsetLeft;
+    const paddleRight = paddle.offsetLeft + paddleWidth;
+
     if (
-      ballTop + ballWidth >= gameArea.offsetHeight - paddle.offsetHeight &&
-      ballTop <= gameArea.offsetHeight - paddle.offsetHeight + ballSpeedY &&
-      ballLeft + ballWidth >= paddle.offsetLeft &&
-      ballLeft <= paddle.offsetLeft + paddleWidth
+      ballTop + ballWidth >= paddleTop &&
+      ballTop <= paddleBottom &&
+      ballLeft + ballWidth >= paddleLeft &&
+      ballLeft <= paddleRight
     ) {
       // Randomize bounce angle
       ballSpeedX = Math.random() * 2 - 1; // Random number between -1 and 1
       ballSpeedY = -ballSpeedY; // Reverse the vertical direction
 
       // Adjust the ball's position to prevent it from going through the paddle
-      ballTop = gameArea.offsetHeight - paddle.offsetHeight - ballWidth;
+      ballTop = paddleTop - ballWidth;
     }
 
     // Check if ball hits the bottom wall
